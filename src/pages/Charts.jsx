@@ -16,8 +16,13 @@ const Charts = () => {
       labels: Object.keys(getUniqueIngredientsList()),
       datasets: [
         {
-          label: "ingredients",
+          label:
+            "Statistics of ingredients used to prepare your favorite coffee cups",
           data: Object.values(getUniqueIngredientsList()),
+          backgroundColor: [
+            "rgba(249, 211, 180, 1)",
+            "rgba(100, 100, 100, 0.5)",
+          ],
         },
       ],
     });
@@ -25,7 +30,7 @@ const Charts = () => {
 
   useEffect(() => {
     getCoffeeList();
-  }, []);
+  });
 
   const getUniqueIngredientsList = () => {
     let ingredientsList = [];
