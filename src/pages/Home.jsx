@@ -4,8 +4,6 @@ import { CoffeeCard } from "../components";
 
 import SearchIcon from "../images/search.svg";
 
-import "../App.css";
-
 const API_URL = "https://api.sampleapis.com/coffee/hot";
 
 const Home = () => {

@@ -21,13 +21,15 @@
   background-color: #212426;
 }
 
-.home {
+.home,
+.charts {
   padding: 4rem;
 
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: #212426;
 }
 
 .logo {
