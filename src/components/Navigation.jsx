@@ -1,5 +1,6 @@
 import React from "react";
 import { Image, Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import logo from "../images/logo.jpg";
 import "bootstrap/dist/css/bootstrap.css";
 import "../App.css";
@@ -8,15 +9,19 @@ const Navigation = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand as={Link} to="/">
           <Image className="logo" src={logo} roundedCircle="true" />
           CoffeeLand
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">charts</Nav.Link>
+            <Nav.Link as={Link} to="/">
+              Home
+            </Nav.Link>
+            <Nav.Link as={Link} to="/charts">
+              Charts
+            </Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
