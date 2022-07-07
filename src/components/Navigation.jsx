@@ -22,6 +22,9 @@ const Navigation = () => {
             <Nav.Link as={Link} to="/charts">
               Charts
             </Nav.Link>
+            <Nav.Link as={Link} to="/add">
+              Add
+            </Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">

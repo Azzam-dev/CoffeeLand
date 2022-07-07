@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { CoffeeCard } from "../components";
+import { CoffeeCard, CoffeeModal } from "../components";
 
 import SearchIcon from "../images/search.svg";
 
@@ -9,6 +9,7 @@ const API_URL = "https://api.sampleapis.com/coffee/hot";
 const Home = () => {
   const [coffeeList, setCoffeeList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [openCoffeeModal, setOpenCoffeeModal] = useState(false);
 
   const searchCoffee = async (title) => {
     const response = await fetch(API_URL);
@@ -43,13 +44,19 @@ const Home = () => {
       {coffeeList?.length > 0 ? (
         <div className="container">
           {coffeeList.map((coffee) => (
-            <CoffeeCard coffee={coffee} />
+            <button onClick={() => setOpenCoffeeModal(true)}>
+              <CoffeeCard coffee={coffee} />
+            </button>
           ))}
         </div>
       ) : (
         <div className="empty">
           <h2> NO coffee found </h2>
         </div>
+      )}
+
+      {openCoffeeModal && (
+        <CoffeeModal setOpenModal={setOpenCoffeeModal} coffee={coffeeList[0]} />
       )}
     </div>
   );
