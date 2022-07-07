@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Navigation } from "./components";
-import { Home, Charts } from "./pages";
+import { Home, Orders, NewOrder, Charts } from "./pages";
 
 import "./App.css";
 
@@ -10,8 +10,9 @@ const App = () => {
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/orders" element={<Orders />} />
         <Route path="/charts" element={<Charts />} />
-        <Route path="/add" element={<h1>Add</h1>} />
+        <Route path="/orderForm" element={<NewOrder />} />
       </Routes>
       <div className="footer"></div>
     </div>

@@ -51,7 +51,7 @@ const Charts = () => {
   });
 
   return (
-    <div className="charts">
+    <div className="main">
       <h1>Charts</h1>
       <Bar data={coffeeData} />
     </div>

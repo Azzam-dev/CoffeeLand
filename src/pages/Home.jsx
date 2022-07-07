@@ -32,7 +32,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="home">
+    <div className="main">
       <h1>CoffeeLand</h1>
       <div className="search">
         <input

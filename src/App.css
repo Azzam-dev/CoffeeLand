@@ -21,8 +21,7 @@
   background-color: #212426;
 }
 
-.home,
-.charts {
+.main {
   padding: 4rem;
 
   display: flex;
