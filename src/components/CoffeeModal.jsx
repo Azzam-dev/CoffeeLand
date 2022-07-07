@@ -7,7 +7,9 @@ const CoffeeModal = ({ coffee, setOpenModal }) => {
   return (
     <div className="modal-background">
       <div className="modal-container">
-        <img src={coffee.image} alt={coffee.title} />
+        <div className="modal-image">
+          <img src={coffee.image} alt={coffee.title} />
+        </div>
         <div className="modal-closeBTN">
           <button onClick={handleClose}>X</button>
         </div>
@@ -18,8 +20,8 @@ const CoffeeModal = ({ coffee, setOpenModal }) => {
           <p>{coffee.description}</p>
         </div>
         <div className="modal-footer">
-          <h2>Coffee Ingredients</h2>
-          <h3>{coffee.ingredients.join(", ")}</h3>
+          <p>Ingredients:</p>
+          <p>{coffee.ingredients.join(", ")}</p>
         </div>
       </div>
       <div className="modal-overlay" onClick={handleClose}></div>

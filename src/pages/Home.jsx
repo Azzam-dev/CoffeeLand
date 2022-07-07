@@ -10,6 +10,12 @@ const Home = () => {
   const [coffeeList, setCoffeeList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [openCoffeeModal, setOpenCoffeeModal] = useState(false);
+  const [coffeeModalData, setCoffeeModalData] = useState();
+
+  const showCoffeeModal = (data) => {
+    setOpenCoffeeModal(true);
+    setCoffeeModalData(data);
+  };
 
   const searchCoffee = async (title) => {
     const response = await fetch(API_URL);
@@ -44,7 +50,7 @@ const Home = () => {
       {coffeeList?.length > 0 ? (
         <div className="container">
           {coffeeList.map((coffee) => (
-            <button onClick={() => setOpenCoffeeModal(true)}>
+            <button onClick={() => showCoffeeModal(coffee)}>
               <CoffeeCard coffee={coffee} />
             </button>
           ))}
@@ -55,8 +61,11 @@ const Home = () => {
         </div>
       )}
 
-      {openCoffeeModal && (
-        <CoffeeModal setOpenModal={setOpenCoffeeModal} coffee={coffeeList[0]} />
+      {openCoffeeModal && coffeeModalData && (
+        <CoffeeModal
+          setOpenModal={setOpenCoffeeModal}
+          coffee={coffeeModalData}
+        />
       )}
     </div>
   );
