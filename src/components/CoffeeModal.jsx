@@ -2,18 +2,14 @@ import React from "react";
 import "./CoffeeModal.css";
 
 const CoffeeModal = ({ coffee, setOpenModal }) => {
+  const handleClose = () => setOpenModal(false);
+
   return (
     <div className="modal-background">
       <div className="modal-container">
         <img src={coffee.image} alt={coffee.title} />
         <div className="modal-closeBTN">
-          <button
-            onClick={() => {
-              setOpenModal(false);
-            }}
-          >
-            X
-          </button>
+          <button onClick={handleClose}>X</button>
         </div>
         <div className="modal-title">
           <h1>{coffee.title}</h1>
@@ -26,6 +22,7 @@ const CoffeeModal = ({ coffee, setOpenModal }) => {
           <h3>{coffee.ingredients.join(", ")}</h3>
         </div>
       </div>
+      <div className="modal-overlay" onClick={handleClose}></div>
     </div>
   );
 };
