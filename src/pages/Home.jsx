@@ -1,10 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { CoffeeCard, CoffeeModal } from "../components";
+import axios from "axios";
 
 import SearchIcon from "../images/search.svg";
-
-const API_URL = "https://api.sampleapis.com/coffee/hot";
 
 const Home = () => {
   const [coffeeList, setCoffeeList] = useState([]);
@@ -18,13 +17,24 @@ const Home = () => {
   };
 
   const searchCoffee = async (title) => {
-    const response = await fetch(API_URL);
-    const data = await response.json();
-    const newArray = data.filter(function (el) {
-      return el.title.toLowerCase().includes(title.toLowerCase());
-    });
+    const API_URL = "https://api.sampleapis.com/coffee/hot";
+    axios
+      .get(API_URL)
+      .then((response) => {
+        const data = response.data;
 
-    setCoffeeList(title ? newArray : data);
+        if (title) {
+          const filteredData = data.filter(function (el) {
+            return el.title.toLowerCase().includes(title.toLowerCase());
+          });
+          setCoffeeList(filteredData);
+        } else {
+          setCoffeeList(data);
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   useEffect(() => {

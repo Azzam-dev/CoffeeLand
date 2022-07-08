@@ -2,8 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
-
-const API_URL = "https://api.sampleapis.com/coffee/hot";
+import axios from "axios";
 
 const Charts = () => {
   const [coffeeList, setCoffeeList] = useState([]);
@@ -14,10 +13,15 @@ const Charts = () => {
   });
 
   const getCoffeeList = async () => {
-    console.log("***");
-    const response = await fetch(API_URL);
-    const data = await response.json();
-    setCoffeeList(data);
+    const API_URL = "https://api.sampleapis.com/coffee/hot";
+    axios
+      .get(API_URL)
+      .then((response) => {
+        setCoffeeList(response.data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   useEffect(() => {
