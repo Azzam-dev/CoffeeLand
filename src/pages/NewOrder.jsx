@@ -1,9 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import "./NewOrder.css";
 
 const NewOrder = () => {
+  const navigate = useNavigate();
+
   const indexNames = ["First", "Second", "Third", "Fourth", "Fifth"];
   const [tableNumber, setTableNumber] = useState("");
   const [orderItemsList, setOrderItemsList] = useState([""]);
@@ -29,9 +32,13 @@ const NewOrder = () => {
     setOrderItemsList([...orderItemsList, ""]);
   };
 
-  const handleSaveOrder = () => {
-    ordersList[tableNumber] = orderItemsList;
-    localStorage.setItem("orders", JSON.stringify(ordersList));
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (tableNumber > 0) {
+      ordersList[tableNumber] = orderItemsList;
+      localStorage.setItem("orders", JSON.stringify(ordersList));
+      navigate("/orders");
+    }
   };
 
   useEffect(() => {
@@ -42,10 +49,11 @@ const NewOrder = () => {
     <div className="main">
       <h1>Form</h1>
       <div className="form-container">
-        <Form className="p-2 w-100">
+        <Form className="p-2 w-100" onSubmit={handleSubmit}>
           <Form.Group className="mb-3 ">
             <Form.Label>Table number</Form.Label>
             <Form.Control
+              type="number"
               required
               value={tableNumber}
               onChange={(e) => setTableNumber(e.target.value)}
@@ -57,7 +65,7 @@ const NewOrder = () => {
 
           {orderItemsList.map((item, index) => (
             <Form.Group key={index} className="mb-3 form-group">
-              <Row className="item-row">
+              <Row>
                 <Form.Label>{indexNames[index]} item</Form.Label>
                 <Col className="mb-3">
                   <Form.Control
@@ -94,7 +102,7 @@ const NewOrder = () => {
             <Form.Check type="checkbox" label="Check me out" />
           </Form.Group>
           <div className="d-grid">
-            <Button variant="dark" type="submit" onClick={handleSaveOrder}>
+            <Button variant="dark" type="submit">
               Save Order
             </Button>
           </div>
