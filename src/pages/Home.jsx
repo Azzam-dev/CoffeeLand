@@ -49,8 +49,8 @@ const Home = () => {
 
       {coffeeList?.length > 0 ? (
         <div className="container">
-          {coffeeList.map((coffee) => (
-            <button onClick={() => showCoffeeModal(coffee)}>
+          {coffeeList.map((coffee, index) => (
+            <button key={index} onClick={() => showCoffeeModal(coffee)}>
               <CoffeeCard coffee={coffee} />
             </button>
           ))}
