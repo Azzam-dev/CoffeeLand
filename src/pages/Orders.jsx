@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import OrderCard from "../components/OrderCard";
+import { OrderCard } from "../components";
 
 const Orders = () => {
   const [ordersList, setOrdersList] = useState(
