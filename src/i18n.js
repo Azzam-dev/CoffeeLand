@@ -15,13 +15,13 @@ i18n
     detection: {
       // order and from where user language should be detected
       order: [
+        "path",
         "querystring",
         "cookie",
         "localStorage",
         "sessionStorage",
         "navigator",
         "htmlTag",
-        "path",
         "subdomain",
       ],
 
