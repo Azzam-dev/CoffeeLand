@@ -1,11 +1,14 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { CoffeeCard, CoffeeModal } from "../components";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 
 import SearchIcon from "../images/search.svg";
 
 const Home = () => {
+  const { t } = useTranslation();
+
   const [coffeeList, setCoffeeList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [openCoffeeModal, setOpenCoffeeModal] = useState(false);
@@ -46,7 +49,7 @@ const Home = () => {
       <h1>CoffeeLand</h1>
       <div className="search">
         <input
-          placeholder="Search for your favourite coffee"
+          placeholder={t("search_placeholder")}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -67,7 +70,7 @@ const Home = () => {
         </div>
       ) : (
         <div className="empty">
-          <h2> NO coffee found </h2>
+          <h2>{t("not_found")}</h2>
         </div>
       )}
 

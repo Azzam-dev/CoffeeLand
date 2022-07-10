@@ -4,22 +4,77 @@ import LanguageDetector from "i18next-browser-languagedetector";
 
 i18n
   // detect user language
-  // learn more: https://github.com/i18next/i18next-browser-languageDetector
   .use(LanguageDetector)
   // pass the i18n instance to react-i18next.
   .use(initReactI18next)
   // init i18next
-  // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     debug: true,
+    supportedLngs: ["en", "ar"],
     fallbackLng: "en",
-    interpolation: {
-      escapeValue: false, // not needed for react as it escapes by default
+    detection: {
+      // order and from where user language should be detected
+      order: [
+        "querystring",
+        "cookie",
+        "localStorage",
+        "sessionStorage",
+        "navigator",
+        "htmlTag",
+        "path",
+        "subdomain",
+      ],
+
+      // cache user language on
+      caches: ["cookie", "localStorage"],
     },
     resources: {
       en: {
         translation: {
           // here we will place our translations...
+          search_placeholder: "Search for your favourite coffee",
+          home: "Home",
+          orders: "Orders",
+          charts: "Charts",
+          new_order: "New Order",
+
+          not_found: "NO coffee found",
+
+          order_for_table: "Order For Table:",
+          cancel_order: "Cancel Order",
+
+          charts_description:
+            "Statistics of ingredients used to prepare your favorite coffee cups",
+
+          table_number: "Table Number",
+          table_number_description: "You can find the number on your table",
+          add_item: "add item",
+          remove: "remove",
+          save_order: "Save Order",
+        },
+      },
+      ar: {
+        translation: {
+          // here we will place our translations...
+          search_placeholder: "ابحث عن قهوتك المفضلة",
+          home: "الرئيسية",
+          orders: "الطلبات",
+          charts: "الاحصائيات",
+          new_order: "طلب جديد",
+
+          not_found: "لم يتم العثور على اي قهوة",
+
+          order_for_table: "طلب الطاوله رقم :",
+          cancel_order: "إلغاء الطلب",
+
+          charts_description:
+            "إحصائيات المكونات المستخدمة في تحضير فناجين القهوة المفضلة لديك",
+
+          table_number: "رقم الطاولة",
+          table_number_description: "يمكنك العثور على الرقم على طاولتك",
+          add_item: "اضافة عنصر",
+          remove: "إزالة",
+          save_order: "احفظ الطلب",
         },
       },
     },

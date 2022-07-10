@@ -1,10 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import "./NewOrder.css";
 
 const NewOrder = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const indexNames = ["First", "Second", "Third", "Fourth", "Fifth"];
@@ -47,11 +49,11 @@ const NewOrder = () => {
 
   return (
     <div className="main">
-      <h1>Form</h1>
+      <h1>{t("new_order")}</h1>
       <div className="form-container">
         <Form className="p-2 w-100" onSubmit={handleSubmit}>
           <Form.Group className="mb-3 ">
-            <Form.Label>Table number</Form.Label>
+            <Form.Label>{t("table_number")}</Form.Label>
             <Form.Control
               type="number"
               required
@@ -59,7 +61,7 @@ const NewOrder = () => {
               onChange={(e) => setTableNumber(e.target.value)}
             />
             <Form.Text className="text-muted">
-              You can find the number on your table.
+              {t("table_number_description")}
             </Form.Text>
           </Form.Group>
 
@@ -82,7 +84,7 @@ const NewOrder = () => {
                       variant="danger"
                       onClick={() => handleRemoveItem(index)}
                     >
-                      <span> remove </span>
+                      <span> {t("remove")} </span>
                     </Button>
                   </Col>
                 )}
@@ -91,7 +93,7 @@ const NewOrder = () => {
                 {orderItemsList.length - 1 === index &&
                   orderItemsList.length < 5 && (
                     <Button variant="secondary" onClick={handleAddItem}>
-                      <span>add item</span>
+                      <span>{t("add_item")}</span>
                     </Button>
                   )}
               </div>
@@ -103,7 +105,7 @@ const NewOrder = () => {
           </Form.Group>
           <div className="d-grid">
             <Button variant="dark" type="submit">
-              Save Order
+              {t("save_order")}
             </Button>
           </div>
         </Form>

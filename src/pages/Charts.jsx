@@ -1,10 +1,14 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import axios from "axios";
 
 const Charts = () => {
+  const { t } = useTranslation();
+
   const [coffeeList, setCoffeeList] = useState([]);
 
   const [coffeeData, setCoffeeData] = useState({
@@ -32,8 +36,7 @@ const Charts = () => {
         labels: Object.keys(getUniqueIngredientsList()),
         datasets: [
           {
-            label:
-              "Statistics of ingredients used to prepare your favorite coffee cups",
+            label: t("charts_description"),
             data: Object.values(getUniqueIngredientsList()),
             backgroundColor: [
               "rgba(249, 211, 180, 1)",
@@ -43,7 +46,7 @@ const Charts = () => {
         ],
       });
     }
-  }, [coffeeList]);
+  }, [coffeeList, i18next.language]);
 
   const getUniqueIngredientsList = () => {
     let ingredientsList = [];
@@ -59,7 +62,7 @@ const Charts = () => {
 
   return (
     <div className="main">
-      <h1>Charts</h1>
+      <h1>{t("charts")}</h1>
       <Bar data={coffeeData} />
     </div>
   );

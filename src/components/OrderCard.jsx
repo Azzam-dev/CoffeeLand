@@ -1,11 +1,16 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Button, Image, Card, Row, Col } from "react-bootstrap";
 import "./OrderCard.css";
 
 const OrderCard = ({ tableNumber, orderItems, handleRemoveOrder }) => {
+  const { t } = useTranslation();
+
   return (
     <div key={tableNumber} className="order-container">
-      <h4>Order For Table: {tableNumber}</h4>
+      <h4>
+        {t("order_for_table")} {tableNumber}
+      </h4>
       {orderItems.map((item, index) => (
         <Card className="my-3" key={index}>
           <Row>
@@ -28,7 +33,7 @@ const OrderCard = ({ tableNumber, orderItems, handleRemoveOrder }) => {
       ))}
       <Row>
         <Button variant="danger" onClick={() => handleRemoveOrder(tableNumber)}>
-          Cancel Order
+          {t("cancel_order")}
         </Button>
       </Row>
     </div>

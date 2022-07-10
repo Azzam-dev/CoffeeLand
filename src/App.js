@@ -1,3 +1,4 @@
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Navigation } from "./components";
 import { Home, Orders, NewOrder, Charts } from "./pages";

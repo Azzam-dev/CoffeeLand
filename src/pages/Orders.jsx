@@ -1,8 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { OrderCard } from "../components";
 
 const Orders = () => {
+  const { t } = useTranslation();
+
   const [ordersList, setOrdersList] = useState(
     JSON.parse(localStorage.getItem("orders"))
   );
@@ -20,7 +23,7 @@ const Orders = () => {
 
   return (
     <div className="main">
-      <h1>Orders</h1>
+      <h1>{t("orders")}</h1>
       <div className="">
         {Object.keys(ordersList).map((tableNumber) => (
           <OrderCard
