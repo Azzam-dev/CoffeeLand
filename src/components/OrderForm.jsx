@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Form, Button, Row, Col } from "react-bootstrap";
 
@@ -33,7 +33,7 @@ const OrderForm = ({ handleSubmit }) => {
         onSubmit={(event) => handleSubmit(event, tableNumber, orderItemsList)}
       >
         <Form.Group className="mb-3 ">
-          <Form.Label data-testid="formLabel">{t("table_number")}</Form.Label>
+          <Form.Label>{t("table_number")}</Form.Label>
           <Form.Control
             type="number"
             min="1"
