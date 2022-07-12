@@ -21,7 +21,10 @@ const Charts = () => {
     axios
       .get(API_URL)
       .then((response) => {
-        setCoffeeList(response.data);
+        const data = response.data.filter(
+          (el) => Array.isArray(el.ingredients) // This is for filtering the faulty data that the request returns
+        );
+        setCoffeeList(data);
       })
       .catch((error) => {
         console.log(error.message);

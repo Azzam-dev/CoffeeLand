@@ -24,7 +24,9 @@ const Home = () => {
     axios
       .get(API_URL)
       .then((response) => {
-        const data = response.data;
+        const data = response.data.filter(
+          (el) => Array.isArray(el.ingredients) // This is for filtering the faulty data that the request returns
+        );
 
         if (title) {
           const filteredData = data.filter(function (el) {
