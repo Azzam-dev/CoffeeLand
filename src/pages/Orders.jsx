@@ -7,7 +7,7 @@ const Orders = () => {
   const { t } = useTranslation();
 
   const [ordersList, setOrdersList] = useState(
-    JSON.parse(localStorage.getItem("orders"))
+    JSON.parse(localStorage.getItem("orders")) || {}
   );
 
   const handleRemoveOrder = (tableNumber) => {
